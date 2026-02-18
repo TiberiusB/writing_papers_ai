@@ -1,0 +1,10 @@
+name: Zotero MCP
+version: 0.0.1
+schema: v1
+
+mcpServers:
+  - name: zotero
+    command: node
+    args:
+      - /home/messeru/.nvm/versions/node/v22.18.0/lib/node_modules/zotero-mcp/build/index.js
+    env: {}

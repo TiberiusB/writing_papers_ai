@@ -1,0 +1,12 @@
+---
+description: Core conventions for the multi-agent writing methodology
+alwaysApply: true
+---
+
+# Writing Methodology Conventions
+
+- **Evidence traceability**: Every substantive claim must be traceable to `research_log.md` (SOURCES and CLAIMS CHECKLIST). Do not invent facts, quotes, or claims.
+- **UNVERIFIED**: When a claim cannot be supported by available sources, mark it as UNVERIFIED in the claims checklist or flag it in the draft (e.g., "Evidence is limited" or "This remains an open question").
+- **human_input_log.md**: When the human provides input during a step (topic, feedback, constraints), append to `human_input_log.md` with: Step, Human input (summary or quote), Cognitive contribution type (Goal-setting / Ethical constraint / Reframing / Selection / Correction / Synthesis / Evaluative override / Other).
+- **File structure**: Work within `posts/YYYY-MM-DD-topic/` folders. Key files: `research_log.md`, `outline.md`, `draft.md`, `claims_checklist.md`, `fact_check_report.md`, `review_notes.md`, `edit_notes.md`, `publish.md`, `human_input_log.md`, `methodology_and_human_contribution.md`.
+- **Formatting**: Use plain Markdown (headers, paragraphs). Avoid bold or italics (asterisks are difficult in plaintext). Blank line between paragraphs and sections.

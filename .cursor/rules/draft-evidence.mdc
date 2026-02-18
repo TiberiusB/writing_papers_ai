@@ -1,0 +1,12 @@
+---
+description: Evidence discipline when editing draft.md
+globs: "**/draft.md"
+alwaysApply: false
+---
+
+# Draft Evidence Rules
+
+- **Single source of truth**: Use only evidence from `research_log.md`. Do not add claims, quotes, or data not documented there.
+- **Attribution**: For every quote or fact, add attribution (e.g., "According to Source 2 …" or "[Author, Title]").
+- **UNVERIFIED and gaps**: If a claim is UNVERIFIED or tied to a research gap, phrase it tentatively (e.g., "One open question is …", "Evidence here is limited …").
+- **Section alignment**: Section titles should match `outline.md` so the Fact-checker can map draft sections back to the CLAIMS CHECKLIST.

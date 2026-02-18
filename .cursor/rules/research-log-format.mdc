@@ -1,0 +1,12 @@
+---
+description: Format expectations when editing research_log.md
+globs: "**/research_log.md"
+alwaysApply: false
+---
+
+# Research Log Format
+
+- **SOURCES**: Each source must have: Author/Organization, URL, Date, Type, Authority Level (Primary/Secondary/Tertiary), Summary, Key Quotes (exact wording with page/section if available), Key Facts/Data (with source attribution).
+- **CLAIMS CHECKLIST**: Table with columns: Claim | Supporting Source(s) | Evidence Type | Notes. Map each significant claim to at least one source. Mark unsupported claims as UNVERIFIED.
+- **Quotes**: Use exact wording. Include page numbers, section refs, or timestamps when available.
+- **Diversity**: Prefer diverse sources (not all from same author/organization). Prioritize primary over secondary sources.

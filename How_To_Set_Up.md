@@ -1,6 +1,6 @@
 # Manual: How to recreate this AI-enhanced writing tool
 
-The rest of this document is a **manual** for setting up the environment, tools, and workflow so you can recreate and adapt this AI-enhanced writing setup (Cursor, Claude, Zotero, MCP, prompts, and file structure).
+Thtis is a **manual** for setting up the environment, tools, and workflow so you can recreate and adapt this AI-enhanced writing setup (Cursor, Claude, Zotero, MCP, prompts, and file structure).
 
 ---
 
@@ -15,7 +15,7 @@ Tools:
 
 https://cursor.com/download 
 
-After installing Cursor, install these extensions (Extensions view: `Ctrl+Shift+X` in Cursor):
+After installing Cursor, install these **extensions** (Extensions view: `Ctrl+Shift+X` in Cursor):
 
 - **Markdown All in One** — shortcuts, preview, TOC, folding for markdown
 - **markdownlint** — linting for consistent markdown formatting
@@ -32,6 +32,41 @@ This is our shared *knowledge commons*. Everyone in the network can contribute t
 ## Install Zotero MCP server
 See more https://github.com/54yyyu/zotero-mcp
 This MCP in particular also installs an LLM on your computer to perform semantic indexing of files in the Zotero library.
+
+**Prerequisites** (you already have these):
+
+* Zotero installed and running
+* Zotero local API enabled: Zotero → Preferences/Settings → Advanced → check “Allow other applications on this computer to communicate with Zotero”
+
+**Install the Zotero MCP server (official repo: Python)**
+
+From https://github.com/54yyyu/zotero-mcp, the project is Python-based. Pick one:
+
+Option A – with uv:
+```
+uv tool install "git+https://github.com/54yyyu/zotero-mcp.git"
+zotero-mcp setup  # Auto-configure (Claude Desktop supported)
+```
+Option B – with pip:
+```
+pip install git+https://github.com/54yyyu/zotero-mcp.git
+zotero-mcp setup  # Auto-configure (Claude Desktop supported)
+```
+Also configures semantic search and can help with MCP clients through the *setup* command
+
+After this, the zotero-mcp command should be on your PATH.
+
+**Get your Zotero IDs** (for Cursor)
+
+You need two IDs if you use both a group library and your personal library:
+* Personal library (user) ID:
+Go to https://www.zotero.org/settings/keys and log in.
+Your user ID is in the URL of your library, e.g. https://www.zotero.org/users/-user-ID-.
+Or: Zotero → Preferences → Sync and note the user ID if shown.
+Group library ID (e.g. Sensorica):
+Open the group page, e.g. https://www.zotero.org/groups/6418034/sensorica.
+The number in the URL is the group library ID (e.g. 6419034).
+
 
 **Connect to Cursor (if you use Cursor)**
 

@@ -67,6 +67,6 @@ There are different types of agents, based on the methodology that we use.
 After a writing session, this agent extracts from the user input the wisdom, vision, intuition, skills that are specifically human, that contributed to the deliverable. This is essential for surfacing the new metacognitive skills that humans develop in the presence of AI, educating or sensitizing users to this emerging dimension of intellectual work and distinguishing between AI and its limitations.
 
 
+# Things to be integrated later
 
-To do: Create a template starter
 To do: Integrate a better way to transfer ideas to the AI system, using Steven's input

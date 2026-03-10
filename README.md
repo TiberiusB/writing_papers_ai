@@ -8,6 +8,8 @@
 
 This project is an **AI-assisted writing methodology** for technical papers and blog posts. It combines a clear, evidence-based process with **multi-agent orchestration**: different AI roles (Researcher, Outliner, Drafter, Reviewer, Fact-checker, Editor, Human-input) work in sequence on shared files, so that research, structure, drafting, review, fact-checking, and editing are each handled in a focused way. Every claim is meant to be traceable to sources; the human sets goals and constraints and can intervene at any step. At the end, the **Human-input** agent summarizes how the piece was produced and what the human contributed, so the final deliverable includes both the article (`publish.md`) and an explicit record of the methodology and human vs AI contribution.
 
+This is part of Sensorica's [Working with AI program](https://www.sensorica.co/stewarding/help/education/use-ai). 
+
 ### How it works: multi-agent orchestration
 
 Writing is done in a **fixed sequence of steps**. Each step is a role (optionally a dedicated Cursor chat with a pinned prompt). The roles and their main outputs are:
@@ -25,8 +27,10 @@ Whenever the human provides input in the chat during a step, that role appends a
 ### Additional tools
 
 - **Cursor** — AI-native IDE that lets you orchestrate multiple specialized writing agents (Researcher, Outliner, Drafter, etc.) through pinned prompts and rules, with direct access to tools like Zotero, the web, and the browser, all inside a single coding environment.
-- **Zotero** — Reference manager; store and organize sources. Optional **Zotero MCP server** in Cursor for searching the library and using **semantic search** (find papers by meaning, not only keywords).
-- **MCP servers** — Cursor can use other MCPs (e.g. Browser) for live pages, testing, or research.
+- **Zotero** — Reference manager; store and organize sources. Optional **Zotero MCP server** in Cursor for searching the library and using semantic search (find papers by meaning, not only keywords). See the Zotero site at [`https://www.zotero.org`](https://www.zotero.org) and the Zotero MCP server at [`https://github.com/54yyyu/zotero-mcp`](https://github.com/54yyyu/zotero-mcp) for installation details.
+- **Google Drive MCP server** — Lets agents search and open notes, PDFs, Docs, Sheets, and Slides in Google Drive directly from Cursor (for example to pull in source documents or spreadsheets during the Researcher step). We use the [Google Drive MCP Server by piotr-agier](https://github.com/piotr-agier/google-drive-mcp); it uses OAuth 2.0 (desktop app, no client secret) and supports search, read, download, and optional Calendar integration. See `How_To_Set_Up.md` for installation and Cursor MCP configuration.
+- **MediaWiki MCP server** — Connects Cursor to any MediaWiki wiki (including Wikipedia or an internal wiki) as a structured research source, with tools like `get-page`, `search-page`, and `get-category-members`. We use the [MediaWiki MCP Server by ProfessionalWiki](https://github.com/ProfessionalWiki/MediaWiki-MCP-Server); after installation, add it as an MCP server in Cursor so that research agents can query wiki pages directly.
+- **Other MCP servers** — Cursor can use additional MCPs (e.g. Browser) for live pages, testing, or research; check the MCP Registry for more options that fit your workflow.
 - **Browser capabilities** — Useful for testing web-facing content or looking up sources during research.
 - **Fabric prompt library** — Optional. Expose Fabric patterns as Cursor commands (e.g. `/summarize_paper`) via `~/.cursor/commands` or Settings → Rules, Skills and Commands.
 - **Cursor chat per role** — One chat per role with the corresponding prompt pinned; reference files with `@research_log.md`, `@outline.md`, etc., to keep each agent scoped.

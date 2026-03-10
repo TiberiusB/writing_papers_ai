@@ -46,10 +46,29 @@ NOTE: There is a template folder under **posts** named **post_tempalte_file_stru
 5. **Optional**  
    Use the Methodology template (Section G in the Manual below) to plan scope, sources, and retrospective, and run a lightweight retrospective after publishing.
 
+## Using MCP servers (Zotero, Google Drive, MediaWiki)
 
-So as long as:
-* Zotero is running when you use the MCP server, and
-* Cursor has the Zotero MCP server configured and enabled,
+- **Zotero MCP server**:  
+  Use this mainly in the **Researcher** and **Fact-checker** steps.
+  - In a Researcher chat, you can say things like:  
+    “Search my Zotero library for recent work on networked organizations” or  
+    “List key papers tagged `commons` in the Sensorica group library.”  
+  - As long as:
+    - Zotero is running when you use the MCP server, and
+    - Cursor has the Zotero MCP server configured and enabled,  
+    you should be able to search your Zotero library and retrieve items from Cursor.
+  - To confirm that it works, try a prompt like: “Search my Zotero library for articles about commons-based peer production” and then ask the agent to add the most relevant items (with citation info) into `research_log.md`.
 
-You should be able to search your Zotero library and retrieve items from Cursor. If you’ve already added the MCP server in Cursor, try a chat prompt like “Search my Zotero library for …” to confirm it works.
+- **Google Drive MCP server (piotr-agier)**:  
+  Use this when important source material (notes, PDFs, Docs, Sheets, Slides) lives in Google Drive. The server supports search, read, download, and folder navigation ([piotr-agier/google-drive-mcp](https://github.com/piotr-agier/google-drive-mcp)).
+  - In the Researcher chat, you might ask:  
+    “Search my Google Drive for PDFs about sensor networks and list the most relevant ones” or  
+    “Open the Google Doc ‘Sensorica governance notes’ and summarize the key points into `research_log.md`.”
+  - For data-heavy pieces, you can ask the agent to read a Google Sheet (e.g. `getGoogleSheetContent`) and extract the rows/columns you need into a local markdown table in `research_log.md` or a file under `sources/`. You can also use `readGoogleDoc` (format `markdown` or `text`) and `downloadFile` to pull content into your post folder.
 
+- **MediaWiki MCP server (ProfessionalWiki)**:  
+  Use this when part of your knowledge base is in a MediaWiki wiki (for example an organizational wiki or Wikipedia).
+  - In the Researcher chat, you can say:  
+    “Search the wiki for pages about commons-based peer production and summarize the main concepts” or  
+    “Get the page ‘Peer-to-peer_economics’ and extract definitions and key arguments into `research_log.md`.”
+  - Because the MediaWiki MCP server exposes tools like `get-page`, `search-page`, and `get-category-members`, you can ask the agent to systematically explore categories (e.g. all pages in a “Governance” category) and turn that into structured notes that feed the outline and draft.

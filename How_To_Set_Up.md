@@ -52,6 +52,12 @@ Option B – with pip:
 pip install git+https://github.com/54yyyu/zotero-mcp.git
 zotero-mcp setup  # Auto-configure (Claude Desktop supported)
 ```
+NOTE: 
+* you may need to have install Python package and environment manager. Run the command *uv --version*
+in the terminal to see if you have it. 
+* you may also need to install git. Try the command *git --version* to see if it is installed. 
+
+
 Also configures semantic search and can help with MCP clients through the *setup* command
 
 After this, the zotero-mcp command should be on your PATH.
@@ -62,7 +68,7 @@ You need two IDs if you use both a group library and your personal library:
 * Personal library (user) ID:
 Go to https://www.zotero.org/settings/keys and log in.
 Your user ID is in the URL of your library, e.g. https://www.zotero.org/users/-user-ID-.
-Or: Zotero → Preferences → Sync and note the user ID if shown.
+* Or: Zotero → Preferences → Sync and note the user ID if shown.
 Group library ID (e.g. Sensorica):
 Open the group page, e.g. https://www.zotero.org/groups/6418034/sensorica.
 The number in the URL is the group library ID (e.g. 6419034).
@@ -89,7 +95,7 @@ Edit ~/.cursor/mcp.json. Add 2 Zotero MCP servers, online/group, pointing to a s
         }
 	}
   ```
-  NOTE: replace "YOUR_USER_ID" and "YOUR_LIBRARY_ID" above with your proper ID numbers. These numbers are not the same. 
+  NOTE: replace "YOUR_USER_ID" and "YOUR_LIBRARY_ID" above with your proper ID numbers. These numbers are not the same. Also note that with Cursor you don't need to connect to your local Zotero, so you don't need the *zotero-personal* and *YOUR_USER_ID* is not required. It is required for VSCodium though... 
 
 **Get your Zotero user ID**
 
@@ -100,9 +106,8 @@ Edit ~/.cursor/mcp.json. Add 2 Zotero MCP servers, online/group, pointing to a s
   * Opening your library at https://www.zotero.org/users/XXXXXX and using the number in the URL
   * Or: Zotero → Preferences → Sync → your user ID if shown
 
-Once the MCP server is installed and connected to Cursor, you need to initialize the *semantic search database* to enable the semantic indexing, to access the semantic functionality.
 
-**Connect to VSCodium, if you use it**
+**Connect to VSCodium** (if you use it)
 ```
 VSCodium
 
@@ -148,10 +153,32 @@ codium
 
 more info https://chatgpt.com/share/6992c7a2-aa84-8004-b69f-26ed092b21ac
 
-**To start the MCP server type in terminal** 
+**Start the Zotero MCP server?** 
+
+Once the MCP server is installed and connected to Cursor, you need to initialize the *semantic search database* to enable the semantic indexing, to access the semantic functionality.
+
+You do not normally start the Zotero MCP server manually when using Cursor. Cursor (like VSCodium with MCP support) launches the MCP server process itself based on your mcpServers configuration. The MCP server is designed to run over stdio, not as a background daemon.
+
+You are using: zotero-mcp with Zotero desktop.
+
+Cursor will spawn:
+```
+node /path/to/zotero-mcp/build/index.js
+```
+You can manually enter in terminal: 
 ```
 node $(npm root -g)/zotero-mcp/build/index.js
 ```
+Expected behavior:
+* It prints nothing
+* It does not exit
+* It waits (because it is listening on stdio)
+
+That “blocking” state means it is running correctly.
+
+* Stop it with: CTRL/C in your terminal
+
+
 To update the semantic search database for the personal library, after adding zotero-personal, run:
 ```
 # With zotero-personal env vars setZOTERO_LIBRARY_TYPE=user ZOTERO_LIBRARY_ID=YOUR_USER_ID zotero-mcp update-db
@@ -185,6 +212,54 @@ Using the semantic capabilities, you'll also be able to
 * Find connections between different research areas
 * Discover papers that share conceptual themes
 * Explore your library by ideas rather than exact terms
+
+## Install Google Drive MCP server (piotr-agier)
+
+The **Google Drive MCP Server** by [piotr-agier](https://github.com/piotr-agier/google-drive-mcp) lets Cursor work with Google Drive, Docs, Sheets, Slides, and Calendar via a standardized MCP interface (search, read, download, create, update, etc.).
+
+**Requirements:**
+- Node.js 18 or higher (LTS recommended)
+- A Google Cloud project with these APIs enabled: Google Drive API, Google Docs API, Google Sheets API, Google Slides API (and optionally Google Calendar API)
+- OAuth 2.0 credentials of type **Desktop application** (Client ID only; no client secret)
+
+**Google Cloud setup (summary):**
+1. In [Google Cloud Console](https://console.cloud.google.com/), create a project and enable the APIs above.
+2. Configure the OAuth consent screen (e.g. External, add your email as test user), and add the scopes you need (e.g. `drive`, `drive.readonly`, `documents`, `spreadsheets`, `presentations`, and optionally `calendar`, `calendar.events`).
+3. Create credentials: **Create credentials → OAuth client ID → Application type: Desktop app**. Download the JSON, rename it to `gcp-oauth.keys.json`.
+
+**Install and run (recommended: npx):**
+```bash
+# First-time auth (browser opens for Google sign-in; tokens saved to ~/.config/google-drive-mcp/tokens.json)
+npx @piotr-agier/google-drive-mcp auth
+```
+You can also run the server directly; it will prompt for auth on first run:
+```bash
+npx @piotr-agier/google-drive-mcp
+```
+
+**Configure in Cursor:**
+1. Go to **Cursor Settings → MCP → Add new MCP Server**.
+2. Add a server with:
+   - **Command:** `npx`
+   - **Args:** `@piotr-agier/google-drive-mcp`
+   - **Env:** `GOOGLE_DRIVE_OAUTH_CREDENTIALS` = path to your `gcp-oauth.keys.json` (e.g. `/home/you/config/gcp-oauth.keys.json`)
+
+Example MCP config (e.g. in `~/.cursor/mcp.json` or via Cursor UI):
+```json
+{
+  "mcpServers": {
+    "google-drive": {
+      "command": "npx",
+      "args": ["@piotr-agier/google-drive-mcp"],
+      "env": {
+        "GOOGLE_DRIVE_OAUTH_CREDENTIALS": "/path/to/your/gcp-oauth.keys.json"
+      }
+    }
+  }
+}
+```
+
+After setup, agents can search Drive, read Docs/Sheets, download files, and (if configured) manage Calendar events. For full options (Docker, token path, scopes, troubleshooting), see the [project README](https://github.com/piotr-agier/google-drive-mcp).
 
 ## Claude Configuration (best for technical writing)
 

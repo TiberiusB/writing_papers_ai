@@ -38,18 +38,29 @@ Whenever the human provides input in the chat during a step, that role appends a
 ---
 
 
-# Practical orchestration in Cursor
+# Practical consideraitions in Cursor
 
-## 1 Create one chat per role
+## Crafting your initial prompt
+The initial prompt is very important because this is where you try to make the AI agent understand what you want to do. 
+Start by crafting your initial prompt, use the *initial_prompt_template.md* as a guide, find it in the **prompts** folder and make a copy of it under a different name.
+Set up your AI chat in **Ask** mode and brainstorm a little with the AI to clarify your ideas.
+If you want, you can change your AI in **Planning** mode, give it the *initial_prompt_template* and ask it to htink about how to approach the problem. Once you're satisfied with the planning, ask it to implement the plan into the *initial_prompt_template*, while respecting the structure.
+You'll use this as your initial prompt.  
+
+
+## Option 1 (preferable): Execute all roles / prompts sequentially in the same chat
+In the initial prompt (see initial_prompt_template.md) ask the agent to stop after every step and allow you to review and intervene. This option is preferable because everything goes in the same context window, and the agent can better mix "learnings" from one step to the next.
+
+## Option 2: Create one chat per role
 Open multiple chat tabs or split panes (e.g., **Researcher**, **Outliner**, **Drafter**, **Reviewer**, **Fact‑checker**, **Editor**, **Human-input**).
 Each chat becomes a “specialized agent” by pinning a role prompt at the top.
 
-## 2 Use consistent role prompts
+## Use consistent role prompts
 
 Use the full role prompts in the `prompts/` folder (e.g. `researcher_prompt.md`, `outliner_prompt.md`, `drafter_prompt.md`, etc.) by pinning their content at the top of each chat. Short examples for quick reference:
 
 
-## 3 If you want a “manager” pattern
+## If you want a “manager” pattern
 
 Create a Manager chat that:
 

@@ -72,3 +72,22 @@ NOTE: There is a template folder under **posts** named **post_tempalte_file_stru
     “Search the wiki for pages about commons-based peer production and summarize the main concepts” or  
     “Get the page ‘Peer-to-peer_economics’ and extract definitions and key arguments into `research_log.md`.”
   - Because the MediaWiki MCP server exposes tools like `get-page`, `search-page`, and `get-category-members`, you can ask the agent to systematically explore categories (e.g. all pages in a “Governance” category) and turn that into structured notes that feed the outline and draft.
+
+- **docs-mcp-server (arabold)**:  
+  Use this when a post discusses a specific software library, framework, protocol, or API and you want claims grounded in the actual current documentation rather than the model's training memory.
+  - In the Researcher chat, you might ask:  
+    “Index the documentation for [library] at [docs URL] as library '[name]' version '[x.y]'” (this calls `scrape_docs`), then  
+    “Search the '[name]' docs for [topic] and add the relevant facts and exact wording to `research_log.md` with the doc URL as the source.”
+  - In the Fact-checker chat, if a claim in `draft.md` concerns that library's behavior, ask the agent to `search_docs` for the relevant section and confirm the claim matches the indexed documentation before marking it Verified.
+  - Use `fetch_url` for a quick one-off page-to-Markdown conversion when you don't need a full library index, and `list_libraries` / `find_version` to check what is already indexed before re-scraping.
+
+## Using LifeOS skills (optional, personal)
+
+If you have LifeOS installed globally in Cursor (see `How_To_Set_Up.md`), you have access to a personal skill library (`~/.cursor/skills/`) in addition to this project's own prompts and rules. This is optional, per-user tooling: nothing in this pipeline requires it, and posts written without it work exactly the same way.
+
+Where it can help, and how to keep the pipeline coherent:
+
+- **Research skill**: Runs a multi-agent, URL-verified web research workflow (it auto-triggers on the word "research"). In the Researcher chat, you can lean into this deliberately, e.g. “Use the Research skill to do extensive research on [topic], then fold the verified findings into `research_log.md` in the usual SOURCES / CLAIMS CHECKLIST format.” Always ask explicitly for the second step: the skill's own report is not a substitute for `research_log.md`, and downstream agents (Outliner, Drafter, Fact-checker) only read the project's files.
+- **ArXiv skill**: Useful in the Researcher step for finding and retrieving academic papers on a topic, in the same way as Zotero searches; extract quotes and citations into `research_log.md` as usual.
+- **BiasCheck / DetectAI skills**: Can be run as an extra pass during Review or Editing (e.g. “Run BiasCheck on `draft.md`”) to surface framing issues or AI-writing tells before publication; record any resulting changes in `edit_notes.md` or `review_notes.md` as you would for any other review finding.
+- **Precedence**: This project's role prompts (`prompts/`) and `.cursor/rules/writing-methodology.mdc` always win over a global skill's own format or workflow when you are working inside `writing_papers_ai/`. If a global skill's auto-trigger produces output in its own format, treat it as raw input to be transcribed into the pipeline's files (with evidence traceability preserved), not as a final deliverable.

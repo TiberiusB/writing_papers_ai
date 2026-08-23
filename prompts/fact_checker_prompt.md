@@ -86,7 +86,7 @@ Add a short summary after the table:
 
 ## Missing evidence
 
-- [Claim 1]: [What is asserted in the draft; suggestion, e.g., "Add citation to Source X" or "Remove or mark as opinion."]
+- [Claim 1]: [What is asserted in the draft; suggestion, e.g., "Add citation to Source X" or "Remove or mark as opinion." For claims about a specific software library, framework, or API, note if the docs-mcp-server MCP (if available) could be used to look up and add an authoritative documentation citation to research_log.md.]
 - [Claim 2]: …
 
 ## Unverified (from research_log)

@@ -80,3 +80,14 @@ You might add a skill later if:
 | **Must you set them up?** | No. They’re optional. |
 | **Why use them?** | To define complex workflows, share instructions with a team, or reuse detailed task instructions across projects. |
 | **For your writing pipeline?** | Not necessary yet. Prompts + rules are enough. You can add skills later if a workflow becomes complex or reusable. |
+
+---
+
+## Global skill libraries (e.g. LifeOS) and this project
+
+Skills are not only project-level. Some contributors also have a personal, global skill library installed for Cursor (for example, LifeOS at `~/.cursor/skills/`), which is auto-discovered across every project and every chat, not just this one. This matters for our pipeline in two ways:
+
+1. **Auto-triggering.** A global skill can trigger on a keyword in your message even when you only meant to run one of our role prompts. The clearest example is a "Research" skill that triggers on the word "research" and runs its own multi-agent workflow with its own report format.
+2. **Precedence.** Inside `writing_papers_ai/`, this project's role prompts (`prompts/`) and rules (`.cursor/rules/writing-methodology.mdc`) define what "done" means for each step (which files get produced, in which format, with evidence traced to `research_log.md`). A global skill's own output format never replaces that. If you want to use a global skill as a helper (e.g. LifeOS's Research skill to widen the Researcher's search, or BiasCheck during Review), ask for it explicitly and then ask the agent to fold the results into the pipeline's files, rather than letting the skill's own report stand in as a deliverable.
+
+You still don't need a global skill library to run this methodology; role prompts and rules remain sufficient on their own. See `How_To_Set_Up.md` and `How_To_Use_It.md` for setup and usage details if you do have one installed.

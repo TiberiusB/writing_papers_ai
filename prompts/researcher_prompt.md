@@ -27,6 +27,8 @@ The goals of this exercise are to:
   - Zotero library searches (both keyword and semantic search when available)
   - Local files in the `sources/` directory if provided
   - Academic papers, technical documentation, and primary sources
+  - If the topic involves a specific software library, framework, protocol, or API, and the docs-mcp-server MCP is available, index its official documentation (`scrape_docs`) and search it (`search_docs`) so technical claims are grounded in the current, version-specific docs rather than memory
+  - If a global research skill (e.g. from a personal LifeOS-style skill library) is available and invoked, treat its findings as raw input: extract sources, quotes, and facts from it into research_log.md in this file's format; its own report is not a substitute for research_log.md
 
 - Evaluate each candidate source for:
   - Authority: Is the author/organization credible and knowledgeable?

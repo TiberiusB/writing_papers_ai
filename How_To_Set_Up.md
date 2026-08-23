@@ -261,6 +261,47 @@ Example MCP config (e.g. in `~/.cursor/mcp.json` or via Cursor UI):
 
 After setup, agents can search Drive, read Docs/Sheets, download files, and (if configured) manage Calendar events. For full options (Docker, token path, scopes, troubleshooting), see the [project README](https://github.com/piotr-agier/google-drive-mcp).
 
+## Install docs-mcp-server (technical documentation indexing)
+
+The **Docs MCP Server** by [arabold](https://github.com/arabold/docs-mcp-server) indexes official documentation (websites, GitHub repos, npm/PyPI packages, local files, zip archives) into a local, searchable, version-specific index. This reduces hallucinations when a post discusses a specific library, framework, or API: instead of relying on the model's training data (which may be outdated or wrong for the exact version in question), the agent can scrape and query the real, current docs.
+
+**Requirements:**
+- Node.js 22 or higher (for the `npx` option), or Docker as an alternative.
+
+**Install and run (recommended: npx, no separate install step needed):**
+```bash
+# Index a library's documentation (one-time or when starting a new topic)
+npx @arabold/docs-mcp-server@latest scrape react https://react.dev/reference/react
+
+# Query the index from the CLI (useful to sanity-check before wiring up MCP)
+npx @arabold/docs-mcp-server@latest search react "useEffect cleanup" --output yaml
+```
+
+**Configure in Cursor** (e.g. in `~/.cursor/mcp.json`):
+```json
+{
+  "mcpServers": {
+    "docs-mcp-server": {
+      "command": "npx",
+      "args": ["-y", "@arabold/docs-mcp-server@latest"]
+    }
+  }
+}
+```
+
+Once configured, Cursor agents have access to tools like `scrape_docs` (index a new library/version), `search_docs` (query the index), `list_libraries`, `find_version`, `refresh_version`, `remove_docs`, and `fetch_url` (fetch any single page and convert it to Markdown). See `How_To_Use_It.md` for example prompts and the [project docs](https://github.com/arabold/docs-mcp-server) for Docker setup, embedding-model configuration, and advanced scraping options (e.g. `preserveHashes` for hash-routed SPA doc sites).
+
+## Optional: LifeOS (personal AI skill layer)
+
+LifeOS is a personal AI-assistant infrastructure layer that some contributors run globally in Cursor, independent of this repository: a runtime and constitution under `~/.cursor/LIFEOS/`, and a global skill library (auto-discovered by Cursor) under `~/.cursor/skills/` with dozens of skills (Research, ArXiv, ExtractWisdom, BiasCheck, DetectAI, Fabric, and more).
+
+This is per-user, personal infrastructure, not part of the shared writing methodology. You do not need to install it to recreate or use this environment; skip this section if you do not already have it.
+
+If you do have LifeOS installed, note two things when working in this repo:
+
+- Some LifeOS skills auto-trigger on keywords (for example, its Research skill triggers on the word "research" and runs a multi-agent, URL-verified web research workflow). That can be a useful helper inside the Researcher or Fact-checker steps of this pipeline, but it produces its own report format, not `research_log.md`.
+- This project's role prompts (`prompts/`) and rules (`.cursor/rules/writing-methodology.mdc`) always take precedence for work done in this repo. If a global skill contributes research, quotes, or facts, they still need to be folded into `research_log.md` (with source, quote, and claims-checklist entries) before the pipeline can treat them as evidence; a skill's own output format is not a substitute for the pipeline's files.
+
 ## Claude Configuration (best for technical writing)
 
 High-level guidance (from Claude docs): be explicit, provide context, and use clear formatting instructions in the system prompt. The "Prompting best practices" page highlights explicit instructions, structured prompts, and using examples to steer output. It also notes that models follow system prompts well, so you can use them to control behavior and formatting.

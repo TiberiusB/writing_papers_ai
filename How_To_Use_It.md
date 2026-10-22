@@ -74,7 +74,18 @@ NOTE: There is a template folder under **posts** named **post_tempalte_file_stru
   - Because the MediaWiki MCP server exposes tools like `get-page`, `search-page`, and `get-category-members`, you can ask the agent to systematically explore categories (e.g. all pages in a “Governance” category) and turn that into structured notes that feed the outline and draft.
 
 - **docs-mcp-server (arabold)**:  
-  Use this when a post discusses a specific software library, framework, protocol, or API and you want claims grounded in the actual current documentation rather than the model's training memory.
+  Use this when a post discusses a specific software library, framework, protocol, or API and you want claims grounded in the actual current documentation rather than the model's training memory. On this machine it also holds the local wiki indexes (OVN, P2P, Sensorica, and related libraries). Update those yourself in the web UI; agents then search the same index.
+  - **Open the UI:** [http://127.0.0.1:6280/](http://127.0.0.1:6280/). Add a docs URL, refresh a library, or update what is indexed there. Cursor talks to the same server at `http://127.0.0.1:6280/mcp`.
+  - **It usually starts on its own.** It runs as the systemd user service `grounded-docs`, which is enabled, so it comes up at login. It waits for Ollama on port 11434 before it starts, because search embeddings go through the local `nomic-embed-text` model.
+  - **If the page does not load**, start it yourself:
+
+    ```bash
+    systemctl --user start grounded-docs.service
+    systemctl --user status grounded-docs --no-pager
+    curl -sS -o /dev/null -w '%{http_code}\n' http://127.0.0.1:6280/
+    ```
+
+    `200` means the UI is up. Open [http://127.0.0.1:6280/](http://127.0.0.1:6280/), make the change, then reload MCP in Cursor Settings → MCP so the chat sees the updated index. If the service failed, check that Ollama is up (`systemctl is-active ollama`) and read `journalctl --user -u grounded-docs -n 50 --no-pager`.
   - In the Researcher chat, you might ask:  
     “Index the documentation for [library] at [docs URL] as library '[name]' version '[x.y]'” (this calls `scrape_docs`), then  
     “Search the '[name]' docs for [topic] and add the relevant facts and exact wording to `research_log.md` with the doc URL as the source.”

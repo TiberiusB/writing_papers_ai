@@ -20,9 +20,9 @@ Writing is done in a **fixed sequence of steps**. Each step is a role (optionall
 4. **Reviewer** — Refines `draft.md` for clarity, gaps, and flow; writes `review_notes.md`.
 5. **Fact-checker** — Verifies claims against `research_log.md`, completes `claims_checklist.md`, and writes `fact_check_report.md` (weak/missing evidence).
 6. **Editor** — Final polish and style alignment: produces `publish.md` and `edit_notes.md`.
-7. **Human-input** — Runs last. Reads `human_input_log.md` (and related notes), categorizes human contributions, and produces `methodology_and_human_contribution.md` (and optionally appends a summary to the deliverable).
+7. **Human-input** — Runs last. Reads `human_input_log.md` (and related notes), categorizes human contributions, and produces `methodology_and_human_contribution.md` (and optionally appends a summary to the deliverable). Share **`publish.md` together with `methodology_and_human_contribution.md`** so readers see both the article and the human–AI division of labor.
 
-Whenever the human provides input in the chat during a step, that role appends an entry to **`human_input_log.md`**, so the Human-input agent can summarize who did what. All role prompts are in the `prompts/` folder.
+Whenever the human provides input in the chat during a step, that role appends an entry to **`human_input_log.md`**, so the Human-input agent can summarize who did what. That includes **post-publish reframes** (often the densest human contribution after first close). Human-supplied local analysis files under `sources/` must be logged and given a `research_log.md` Source number before citation. Named **analogical bridges** ("A resembles B") should be stated in the human prompt so AI expansion stays accountable. All role prompts are in the `prompts/` folder. See `How_To_Use_It.md` for the post-publish co-evolution loop.
 
 ### Additional tools
 

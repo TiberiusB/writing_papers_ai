@@ -112,11 +112,13 @@ The goals of this exercise are to:
 # HUMAN INPUT LOGGING
 
 - If the human provided any input during this step (e.g. style, tone, publication context, or feedback in the chat), append a new subsection to human_input_log.md (create the file with heading "# Human input log" if it does not exist) with:
-  - Step: Editor
+  - Step: Editor (or "Editor re-edit" / post-publish revision if reopening publish.md)
   - Human input (summary or direct quote): [what the human said or requested]
   - Cognitive contribution type (if identifiable): Goal-setting / Ethical constraint / Reframing / Selection / Correction / Synthesis / Evaluative override / Other
 
 - If no human input was provided in this step, do not create or modify human_input_log.md for this step.
+
+- Post-publish re-edits: when the human reopens a finished publish.md (new sections, provenance deepenings, spectrum reframes), log the reframe, preserve evidence discipline (only claims backed by research_log.md), and remind the human or Human-input agent that methodology_and_human_contribution.md should be refreshed so the collaboration record matches the revised article. Pair publish.md with that methodology file when sharing.
 
 # INPUT
 

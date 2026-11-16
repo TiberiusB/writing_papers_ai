@@ -24,21 +24,25 @@ The goals of this exercise are to:
 
 - Read the following for context (if available): outline.md (Audience and Purpose, Notes for Drafter), review_notes.md, fact_check_report.md, edit_notes.md. These often reflect human-directed decisions or constraints even when not every word was logged in human_input_log.md.
 
-- For each entry in human_input_log.md (each step: Researcher, Outliner, Drafter, Reviewer, Fact-checker, Editor):
+- For each entry in human_input_log.md (each step: Researcher, Outliner, Drafter, Reviewer, Fact-checker, Editor, Human-input, and any post-publish revision steps):
   - Identify the cognitive contribution type already tagged (Goal-setting, Ethical constraint, Reframing, Selection, Correction, Synthesis, Evaluative override, Other) or infer it from the summary/quote.
-  - Where useful, map the contribution to one or more of the human-proper cognitive domains (see Taxonomy below): e.g. Value framing, Meaning-making, Contextual reframing, Embodied judgment, Responsibility, Creative direction, Strategic intent, Metacognitive oversight, Ethical boundary setting, etc.
+  - Where useful, map the contribution to one or more of the human-proper cognitive domains (see Taxonomy below): e.g. Value framing, Meaning-making, Contextual reframing, Embodied judgment, Responsibility, Creative direction, Strategic intent, Metacognitive oversight, Ethical boundary setting, Cross-domain analogical leap, etc.
   - Optionally label the cognitive process level (Bloom-style) if it helps: e.g. Remember/Understand (clarifying scope), Apply (applying constraints), Analyze (comparing options), Evaluate (judging quality or ethics), Create (generating direction or framing).
+  - Give post-publish reframes equal weight to early pipeline entries; they are often the densest human-proper work.
 
 - Summarize the writing methodology:
   - List the pipeline steps in order: Researcher → Outliner → Drafter → Reviewer → Fact-checker → Editor → Human-input.
+  - If post-publish revision loops occurred, describe them separately (what was reopened, which sources were added, which sections of publish.md changed).
   - For each step, state in one sentence what the agent did and what artifact it produced (e.g. Researcher filled research_log.md; Outliner produced outline.md; … Editor produced publish.md).
 
 - Delineate human vs AI contribution:
   - AI-dominant: research gathering, structuring from evidence, drafting prose, structural review, claim verification, language polish.
-  - Human-dominant: setting topic, audience, purpose, and constraints; reframing scope or criteria; selecting among options; correcting or overriding AI output; taking responsibility and final approval; ethical or stylistic boundaries.
-  - Hybrid: ideation, structured argument building, creative exploration, refinement cycles (human feedback + AI revision).
+  - Human-dominant: setting topic, audience, purpose, and constraints; reframing scope or criteria; selecting among options; correcting or overriding AI output; naming analogical bridges; selecting local analysis files as evidence; taking responsibility and final approval; ethical or stylistic boundaries.
+  - Hybrid: ideation, structured argument building, creative exploration, refinement cycles (human feedback + AI revision), including post-publish deepenings under human reframes.
 
 - Write the methodology_and_human_contribution.md document (or the section to append to publish.md) using the output format below. Then either append that content to publish.md under a clear heading, or save it as a separate file and note in publish.md or in a short note that the methodology and human contribution are in methodology_and_human_contribution.md.
+
+- When refreshing after post-publish revisions: rewrite or extend methodology_and_human_contribution.md so it matches the current human_input_log.md and final publish.md; do not leave a first-close methodology that omits later reframes.
 
 # TAXONOMY: HUMAN COGNITIVE CONTRIBUTIONS (for categorization)
 
@@ -93,11 +97,17 @@ Produce a document that can stand as a section of the final deliverable or as a 
 
 ## 5. Recommendations for transparency and co-evolution
 
-- [Optional: One or two sentences on how the human might make their contribution more visible in future runs (e.g. more explicit goal-setting, clearer reframing in the chat), or how the log could be improved.]
+Always include practical recommendations drawn from this run. Prefer concrete process upgrades over generic advice. Cover at least the applicable items below (adapt wording to the session; add session-specific lessons):
+
+- Keep publish.md and methodology_and_human_contribution.md together when sharing so readers see both the article and the human–AI division of labor (including credited commons or mandated sources).
+- Continue logging post-publish reframes in human_input_log.md with contribution types; those reframes are often the highest-value human interventions after first close.
+- When the human supplies a local analysis file, log it immediately as Selection/Correction (or as tagged) and assign a research_log source number so downstream claims stay traceable.
+- Prefer naming analogical bridges in the human prompt (concept A resembles concept B) so AI expansion stays accountable to a human-originated conceptual leap.
+- Optional follow-ups outside the core pipeline when relevant to the piece: live legal/disclosure checks; primary archives beyond secondary paraphrases; BiasCheck / DetectAI passes if framing or authorship style becomes a substantive claim (record outcomes in review_notes.md or edit_notes.md).
 
 # OUTPUT INSTRUCTIONS
 
-- Do not alter the main body of publish.md except to append the methodology-and-human-contribution section (or a short note pointing to methodology_and_human_contribution.md). If you save the methodology as a separate file, do not remove or change the existing content of publish.md beyond adding a single line or short note if desired.
+- Do not alter the main body of publish.md except to append the methodology-and-human-contribution section (or a short note pointing to methodology_and_human_contribution.md). If you save the methodology as a separate file, do not remove or change the existing content of publish.md beyond adding a single line or short note if desired. When the human requested a post-publish content revision of publish.md, that revision is a separate Editor/Researcher task—not this agent's default job—unless the human explicitly asked Human-input to refresh methodology after that revision.
 
 - Use plain Markdown. Do not use bold or italics in the body (asterisks are difficult to read in plaintext).
 

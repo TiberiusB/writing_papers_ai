@@ -30,6 +30,17 @@ The goals of this exercise are to:
   - If the topic involves a specific software library, framework, protocol, or API, and the docs-mcp-server MCP is available, index its official documentation (`scrape_docs`) and search it (`search_docs`) so technical claims are grounded in the current, version-specific docs rather than memory
   - If a global research skill (e.g. from a personal LifeOS-style skill library) is available and invoked, treat its findings as raw input: extract sources, quotes, and facts from it into research_log.md in this file's format; its own report is not a substitute for research_log.md
 
+- When the human supplies or points to a local analysis file (e.g. under `sources/` or `sources/local/`):
+  - Append to human_input_log.md (Selection / Correction, or as tagged) naming the file path.
+  - Add it as a numbered SOURCES entry in research_log.md (Type may be "Local analysis memo" or similar; Authority Level usually Secondary unless it is primary data).
+  - Map claims drawn from it in the CLAIMS CHECKLIST before they appear in draft or publish prose.
+  - Do not treat chat paraphrase of that file as a substitute for a numbered Source.
+
+- When the human names an analogical bridge (e.g. "concept A resembles concept B in corpus X"):
+  - Record that bridge in research_log.md as an analysis claim with sources for each side of the comparison.
+  - Expand and ground the parallel; do not invent a different bridge or drop the human's mapping.
+  - Log the human input (often Reframing / Selection / Synthesis or Cross-domain analogical leap via contribution type Reframing / Selection / Synthesis).
+
 - Evaluate each candidate source for:
   - Authority: Is the author/organization credible and knowledgeable?
   - Currency: Is the information current and relevant?
@@ -155,12 +166,14 @@ For each significant claim that will likely appear in the article, map it to sup
 
 # HUMAN INPUT LOGGING
 
-- If the human provided any input during this step (e.g. topic, scope, audience, constraints, or feedback in the chat), append a new subsection to human_input_log.md (create the file with heading "# Human input log" if it does not exist) with:
-  - Step: Researcher
+- If the human provided any input during this step (e.g. topic, scope, audience, constraints, local files to use, analogical bridges, or feedback in the chat), append a new subsection to human_input_log.md (create the file with heading "# Human input log" if it does not exist) with:
+  - Step: Researcher (or "Researcher revisit" / post-publish revision if reopening after publish.md)
   - Human input (summary or direct quote): [what the human said or requested]
   - Cognitive contribution type (if identifiable): Goal-setting / Ethical constraint / Reframing / Selection / Correction / Synthesis / Evaluative override / Other
 
 - If no human input was provided in this step, do not create or modify human_input_log.md for this step.
+
+- Post-publish research deepenings follow the same logging and SOURCES rules as the initial Researcher pass.
 
 # INPUT
 

@@ -6,7 +6,9 @@ alwaysApply: false
 
 # Research Log Format
 
-- **SOURCES**: Each source must have: Author/Organization, URL, Date, Type, Authority Level (Primary/Secondary/Tertiary), Summary, Key Quotes (exact wording with page/section if available), Key Facts/Data (with source attribution).
+- **SOURCES**: Each source must have: Author/Organization, URL (or local path), Date, Type, Authority Level (Primary/Secondary/Tertiary), Summary, Key Quotes (exact wording with page/section if available), Key Facts/Data (with source attribution).
+- **Local analysis files**: Human-supplied files under `sources/` get a numbered Source entry (path as URL/Path). Claims from them must appear in CLAIMS CHECKLIST before use in draft/publish.
+- **Analogical bridges**: When the human names "A resembles B," document both sides as sources (or cite existing Source numbers) and add a CLAIMS CHECKLIST row for the comparative claim; mark UNVERIFIED if one side lacks evidence.
 - **CLAIMS CHECKLIST**: Table with columns: Claim | Supporting Source(s) | Evidence Type | Notes. Map each significant claim to at least one source. Mark unsupported claims as UNVERIFIED.
 - **Quotes**: Use exact wording. Include page numbers, section refs, or timestamps when available.
 - **Diversity**: Prefer diverse sources (not all from same author/organization). Prioritize primary over secondary sources.

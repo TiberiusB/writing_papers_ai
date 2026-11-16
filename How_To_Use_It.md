@@ -43,8 +43,29 @@ NOTE: There is a template folder under **posts** named **post_tempalte_file_stru
 4. **Consolidate**  
    Copy or save each agent’s output into the corresponding file in the post folder. Use `publish.md` as the final article and keep `methodology_and_human_contribution.md` and `human_input_log.md` for transparency and feedback (to humans).
 
-5. **Optional**  
+5. **Share as a pair**  
+   When publishing or circulating the piece, keep `publish.md` and `methodology_and_human_contribution.md` together so readers see both the article and the human–AI division of labor (including credited commons sources when those were mandated).
+
+6. **Optional**  
    Use the Methodology template (Section G in the Manual below) to plan scope, sources, and retrospective, and run a lightweight retrospective after publishing.
+
+## Post-publish revisions (co-evolution loop)
+
+The first Editor/Human-input close is not always the end. High-value human work often arrives as reframes after `publish.md` exists (new comparison poles, attribution audits, local memos to incorporate).
+
+When that happens:
+
+1. Append the request to `human_input_log.md` with an accurate cognitive contribution type (often Reframing, Selection, Correction, or Synthesis)—do not skip logging because the pipeline already "finished."
+2. If the human supplies or points to a local analysis file under `sources/`, log it as Selection/Correction and add a numbered SOURCES entry in `research_log.md` before citing it in prose.
+3. If the human names an analogical bridge (e.g. "concept A resembles concept B"), treat that as a human-originated mapping to ground with sources on both sides; document it in `research_log.md` / CLAIMS CHECKLIST.
+4. Re-edit `publish.md` (and related claims files) under those constraints.
+5. Refresh `methodology_and_human_contribution.md` so the collaboration record matches the revised article.
+
+## Human practices that improve AI accountability
+
+- Name analogical bridges in the prompt when you have them ("Value Functions resemble the OVN value equation"). That keeps expansion accountable to a human leap rather than an unstated model guess.
+- Put local notes and comparative memos in `sources/local/` (or `sources/`) and tell the agent to use them; they become traceable Sources, not ambient chat context.
+- Prefer explicit reframes ("expand section X to do Y") over vague "make it better" after first close—those reframes are often the densest human contribution and must be logged.
 
 ## Using MCP servers (Zotero, Google Drive, MediaWiki)
 
@@ -100,5 +121,5 @@ Where it can help, and how to keep the pipeline coherent:
 
 - **Research skill**: Runs a multi-agent, URL-verified web research workflow (it auto-triggers on the word "research"). In the Researcher chat, you can lean into this deliberately, e.g. “Use the Research skill to do extensive research on [topic], then fold the verified findings into `research_log.md` in the usual SOURCES / CLAIMS CHECKLIST format.” Always ask explicitly for the second step: the skill's own report is not a substitute for `research_log.md`, and downstream agents (Outliner, Drafter, Fact-checker) only read the project's files.
 - **ArXiv skill**: Useful in the Researcher step for finding and retrieving academic papers on a topic, in the same way as Zotero searches; extract quotes and citations into `research_log.md` as usual.
-- **BiasCheck / DetectAI skills**: Can be run as an extra pass during Review or Editing (e.g. “Run BiasCheck on `draft.md`”) to surface framing issues or AI-writing tells before publication; record any resulting changes in `edit_notes.md` or `review_notes.md` as you would for any other review finding.
+- **BiasCheck / DetectAI skills**: Can be run as an extra pass during Review or Editing (e.g. “Run BiasCheck on `draft.md`”) to surface framing issues or AI-writing tells before publication; record any resulting changes in `edit_notes.md` or `review_notes.md` as you would for any other review finding. Prefer these when framing bias or AI authorship becomes a substantive claim in the article, not only a short style aside.
 - **Precedence**: This project's role prompts (`prompts/`) and `.cursor/rules/writing-methodology.mdc` always win over a global skill's own format or workflow when you are working inside `writing_papers_ai/`. If a global skill's auto-trigger produces output in its own format, treat it as raw input to be transcribed into the pipeline's files (with evidence traceability preserved), not as a final deliverable.

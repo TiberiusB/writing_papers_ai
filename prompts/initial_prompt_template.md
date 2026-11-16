@@ -37,6 +37,8 @@ Specify each source location with full path. Distinguish clearly between Zotero 
 - **Websites**: [URLs and what each is for]
 - **Zotero Group Library "[Name]"**, Collection **"[Name]"**: [What it contains, how to use it]
 - **Zotero My Library** (not Group Library), Collection **"[Name]"**, sub-Collection **"[Name]"**: [What it contains. Must be consulted if listed.]
+- **Local analysis / memos** (under `posts/.../sources/` or `sources/local/`): [Paths. Agents must log these in human_input_log.md and assign research_log Source numbers before citing.]
+- **Grounded Docs / wiki libraries** (if required): [e.g. OVN wiki, P2P wiki via Docs MCP — mandate grounding, not model memory]
 
 Add other sources as needed. Do not skip sub-collections; consult all listed materials.
 
@@ -68,6 +70,10 @@ Provide upfront any domain expertise that Researcher, Outliner, and Drafter shou
 
 **Exclusions**:
 - [e.g. Do not include X in recent activity listings; do not mention Y]
+
+**Analogical bridges** (name them explicitly so AI expansion stays accountable to your leap):
+- [e.g. "Society Protocol Value Functions resemble the OVN benefit redistribution algorithm / value equation"]
+- [e.g. "Network State vs CoordiNATION as two poles; situate X on that spectrum"]
 
 Leave blank if not applicable. The more you provide here, the fewer corrections you will need later.
 
@@ -118,21 +124,29 @@ Create the folder and `human_input_log.md` (with heading "# Human input log") if
 
 ## 10. Rules
 
-- Each agent appends to `human_input_log.md` when the human provides input during that step.
+- Each agent appends to `human_input_log.md` when the human provides input during that step (including post-publish reframes).
 - Use only evidence from `research_log.md`; no invented facts. Mark UNVERIFIED when evidence is insufficient.
 - Plain Markdown; avoid bold or italics in draft body.
 - When human provides corrections or gap completions, the active agent must update research_log.md and/or outline.md so downstream agents receive the corrected information. Do not leave corrections only in human_input_log.md.
+- Local analysis files and named analogical bridges become numbered Sources / claims before they enter draft or publish prose.
+- Share `publish.md` together with `methodology_and_human_contribution.md`.
 - Start fresh: clear chats when beginning a new paper to avoid contamination.
+
+## 11. After first publish (optional co-evolution)
+
+If you reopen the piece after Human-input: log the reframe; add any new local Sources; re-edit publish.md; refresh methodology_and_human_contribution.md. Optional extras: BiasCheck / DetectAI if framing or AI-authorship claims become substantive; live legal/disclosure checks when capital or entity claims matter.
 
 ---
 
-## 11. How to use this template
+## 12. How to use this template
 
 1. Copy this template.
-2. Fill in sections 2–6 (Topic, Audience, Materials, Constraints, Known facts).
+2. Fill in sections 2–6 (Topic, Audience, Materials, Constraints, Known facts, including analogical bridges if any).
 3. Create the post folder under `posts/` (e.g. `posts/2026-02-14-my-topic/`).
 4. Paste the filled template into a new Cursor chat.
 5. Run Researcher; stop for human review.
 6. Run Outliner; stop; human fills "Open Questions and Gaps" in chat.
 7. Run Drafter, Reviewer, Fact-checker, Editor, Human-input in order.
 8. Supply missing sources during Fact-checker if needed.
+9. Share publish.md with methodology_and_human_contribution.md.
+10. Optional after first close: follow section 11.
